@@ -1,4 +1,4 @@
-package com.badalov.springsecurity.dto;
+package com.badalov.springsecurity.payload;
 
 public class MessageResponse {
     private String message;

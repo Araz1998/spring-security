@@ -12,6 +12,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+
+    private String email;
     private String password;
 
     @ManyToMany
@@ -23,16 +25,25 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, Set<Role> roles) {
+    public User(String username, String password, String email, Set<Role> roles) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.roles = roles;
     }
 
-    public User(Long id, String username, String password) {
+    public User(Long id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.email = email;
+    }
+
+    public User(String username, String password, Set<Role> roles, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -65,5 +76,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
