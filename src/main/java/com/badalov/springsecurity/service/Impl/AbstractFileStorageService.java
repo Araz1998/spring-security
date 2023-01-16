@@ -32,6 +32,6 @@ public abstract class AbstractFileStorageService implements FileStorageService {
     public int updateUserPhotoOnDB(String imgPath, String userName) {
         User byUsername = userRepository.findByUsername(userName).get();
 
-         return userPhotoRepository.updateUserPhoto(byUsername, imgPath);
+        return userPhotoRepository.updateUserPhoto(byUsername, imgPath);
     }
 }

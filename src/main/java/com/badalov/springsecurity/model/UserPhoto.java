@@ -11,12 +11,10 @@ public class UserPhoto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String imageSource;
-
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User userId;
-
     public UserPhoto() {
     }
 

@@ -1,12 +1,12 @@
 package com.badalov.springsecurity.service.Impl;
 
-import com.badalov.springsecurity.model.Role;
-import com.badalov.springsecurity.security.JwtTokenProvider;
-import com.badalov.springsecurity.payload.MessageResponse;
 import com.badalov.springsecurity.dto.UserDto;
+import com.badalov.springsecurity.model.Role;
 import com.badalov.springsecurity.model.User;
+import com.badalov.springsecurity.payload.MessageResponse;
 import com.badalov.springsecurity.repositories.RoleRepository;
 import com.badalov.springsecurity.repositories.UserRepository;
+import com.badalov.springsecurity.security.JwtTokenProvider;
 import com.badalov.springsecurity.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,7 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.*;
 
@@ -95,7 +94,7 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<?> changeUserPassword(UserDto userDto) {
         Optional<User> byUsername = userRepository.findByUsername(userDto.getUsername());
         Map<Object, Object> response = new HashMap<>();
-        if(byUsername.isPresent()) {
+        if (byUsername.isPresent()) {
             User user = byUsername.get();
             user.setPassword(passwordEncoder.encode(userDto.getNewPassword()));
             userRepository.save(user);
@@ -111,7 +110,7 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<?> changeUserEmail(UserDto userDto) {
         Optional<User> byUsername = userRepository.findByUsername(userDto.getUsername());
         Map<Object, Object> response = new HashMap<>();
-        if(byUsername.isPresent()) {
+        if (byUsername.isPresent()) {
             User user = byUsername.get();
             user.setEmail(userDto.getNewEmail());
             userRepository.save(user);

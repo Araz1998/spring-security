@@ -2,7 +2,6 @@ package com.badalov.springsecurity.model;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -12,14 +11,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
-
     private String email;
     private String password;
 
     @ManyToMany
     @JoinTable(name = "users_roles",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
     public User() {

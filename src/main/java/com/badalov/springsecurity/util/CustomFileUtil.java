@@ -19,7 +19,7 @@ public class CustomFileUtil {
     private static boolean deleteOldUserPhoto(String imageSource) {
         File oldFile = new File(imageSource);
         boolean deleteResult = false;
-        if(oldFile.exists()) {
+        if (oldFile.exists()) {
             deleteResult = oldFile.delete();
         }
         return deleteResult;

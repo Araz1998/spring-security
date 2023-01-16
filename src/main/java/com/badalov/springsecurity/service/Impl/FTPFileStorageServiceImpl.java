@@ -38,7 +38,7 @@ public class FTPFileStorageServiceImpl extends AbstractFileStorageService {
     public ResponseEntity<?> saveUserPhoto(MultipartFile file, String userName) {
         String filePath = savePhotoOnFileDirectory(file);
         Map<Object, Object> response = new HashMap<>();
-        if(filePath.isEmpty()) {
+        if (filePath.isEmpty()) {
             response.put("message", "Something went wrong!");
             return ResponseEntity.badRequest().body(response);
         }
@@ -53,9 +53,9 @@ public class FTPFileStorageServiceImpl extends AbstractFileStorageService {
     public ResponseEntity<?> updateUserPhoto(MultipartFile file, String userName) {
         boolean result = deleteOldUserPhotoInDirectory(userName);
         Map<Object, Object> response = new HashMap<>();
-        if(result) {
+        if (result) {
             String filePath = savePhotoOnFileDirectory(file);
-            if(filePath.isEmpty()) {
+            if (filePath.isEmpty()) {
                 response.put("message", "Something went wrong!");
                 return ResponseEntity.badRequest().body(response);
             }
@@ -69,6 +69,7 @@ public class FTPFileStorageServiceImpl extends AbstractFileStorageService {
 
     /**
      * Save user's photo to the server directory
+     *
      * @param userFile - user's photo
      * @return - path to file
      */
@@ -91,6 +92,7 @@ public class FTPFileStorageServiceImpl extends AbstractFileStorageService {
 
     /**
      * Finds user's photo on the table and then remove it in the directory
+     *
      * @param userName - user's name for getting a Path to file
      * @return true if file was deleted, else false
      */
@@ -107,7 +109,7 @@ public class FTPFileStorageServiceImpl extends AbstractFileStorageService {
     private boolean deleteFile(String imageSource) {
         File oldFile = new File(imageSource);
         boolean deleteResult = false;
-        if(oldFile.exists()) {
+        if (oldFile.exists()) {
             deleteResult = oldFile.delete();
         }
         return deleteResult;

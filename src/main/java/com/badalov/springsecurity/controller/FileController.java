@@ -3,6 +3,7 @@ package com.badalov.springsecurity.controller;
 import com.badalov.springsecurity.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ public class FileController {
         this.fileStorageService = fileStorageService;
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping("/uploadFile")
     public ResponseEntity<?> uploadUserPhoto(@RequestParam("file") MultipartFile file,
                                              Principal principal) {
@@ -29,6 +31,7 @@ public class FileController {
         return ResponseEntity.ok(responseEntity);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PutMapping("/updateFile")
     public ResponseEntity<?> updateUserPhoto(@RequestParam("file") MultipartFile file,
                                              Principal principal) {
@@ -36,5 +39,4 @@ public class FileController {
                 .updateUserPhoto(file, principal.getName());
         return ResponseEntity.ok(responseEntity);
     }
-
 }

@@ -1,7 +1,10 @@
 package com.badalov.springsecurity.security;
 
 import com.badalov.springsecurity.exception.JwtAuthenticationException;
-import jakarta.servlet.*;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +30,15 @@ public class JwtTokenFilter extends GenericFilterBean {
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) servletRequest);
 
         try {
-            if(Objects.nonNull(token) && jwtTokenProvider.validateToken(token)) {
+            if (Objects.nonNull(token) && jwtTokenProvider.validateToken(token)) {
                 Authentication authentication = jwtTokenProvider.getAuthentication(token);
-                if(Objects.nonNull(authentication)) {
+                if (Objects.nonNull(authentication)) {
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
         } catch (JwtAuthenticationException e) {
             SecurityContextHolder.clearContext();
-            ((HttpServletResponse)servletResponse).sendError(e.getHttpStatus().value());
+            ((HttpServletResponse) servletResponse).sendError(e.getHttpStatus().value());
         }
         filterChain.doFilter(servletRequest, servletResponse);
     }

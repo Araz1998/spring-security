@@ -38,10 +38,6 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/uploadFile").permitAll()
-                .requestMatchers("/updateFile").permitAll()
-                .requestMatchers("/get").permitAll()
-                .requestMatchers("/").permitAll()
                 .requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers("/api/v1/users").hasRole("ADMIN")
                 .requestMatchers("/admin").hasRole("ADMIN")
@@ -50,7 +46,7 @@ public class SecurityConfig {
                 .authenticated()
                 .and();
 
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class );
+        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
