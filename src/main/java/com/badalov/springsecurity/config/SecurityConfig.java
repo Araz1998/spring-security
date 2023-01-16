@@ -18,7 +18,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-//@EnableWebSecurity
 public class SecurityConfig {
 
     private final UserDetailsServiceImpl userDetailsServiceImpl;
@@ -46,7 +45,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers("/api/v1/users").hasRole("ADMIN")
                 .requestMatchers("/admin").hasRole("ADMIN")
-//                .requestMatchers("/uploadFile").hasAnyRole("ADMIN", "USER")
+                .requestMatchers("/password").hasAnyRole("ADMIN", "USER")
                 .anyRequest()
                 .authenticated()
                 .and();

@@ -13,9 +13,7 @@ import java.util.Map;
 @RestController()
 @RequestMapping("/api/v1")
 public class UserController {
-
     private final UserService userService;
-
 
     @Autowired
     public UserController(UserService userService) {
@@ -29,11 +27,5 @@ public class UserController {
         int pageNum = Integer.parseInt(userMap.get("pageNum"));
         return userService.getAllUser(pageSize, pageNum);
     }
-
-//    @PostMapping("/uploadPhoto")
-//    public ResponseEntity<?> uploadPhoto(@RequestParam("name") String name,
-//                                         @RequestParam("file") MultipartFile file) {
-//
-//    }
 
 }

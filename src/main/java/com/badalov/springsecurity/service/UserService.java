@@ -4,7 +4,7 @@ import com.badalov.springsecurity.dto.UserDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 public interface UserService {
 
@@ -16,7 +16,7 @@ public interface UserService {
 
     ResponseEntity<?> getAllUser(int pageSize, int pageNum);
 
-
-    ResponseEntity<?> uploadUserPhoto(String fileName, MultipartFile file);
+    ResponseEntity<?> changeUserPassword(UserDto userDto);
+    ResponseEntity<?> changeUserEmail(UserDto userDto);
 
 }

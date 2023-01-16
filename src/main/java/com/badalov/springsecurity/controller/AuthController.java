@@ -6,8 +6,8 @@ import com.badalov.springsecurity.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,5 +34,15 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
         return userService.registerNewUser(userDto);
+    }
+
+    @PutMapping("/password")
+    public ResponseEntity<?> changePassword(@RequestBody UserDto userDto) {
+        return userService.changeUserPassword(userDto);
+    }
+
+    @PutMapping("/email")
+    public ResponseEntity<?> changeEmail(@RequestBody UserDto userDto) {
+        return userService.changeUserEmail(userDto);
     }
 }

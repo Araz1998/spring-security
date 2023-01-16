@@ -3,7 +3,9 @@ package com.badalov.springsecurity.dto;
 public class UserDto {
     private String username;
     private String password;
+    private String newPassword;
     private String email;
+    private String newEmail;
 
     public String getUsername() {
         return username;
@@ -27,5 +29,21 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getNewEmail() {
+        return newEmail;
+    }
+
+    public void setNewEmail(String newEmail) {
+        this.newEmail = newEmail;
     }
 }
