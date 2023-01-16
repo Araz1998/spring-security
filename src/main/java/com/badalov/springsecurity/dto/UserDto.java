@@ -3,9 +3,7 @@ package com.badalov.springsecurity.dto;
 public class UserDto {
     private String username;
     private String password;
-
     private String email;
-
 
     public String getUsername() {
         return username;

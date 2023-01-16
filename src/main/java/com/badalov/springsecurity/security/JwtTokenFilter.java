@@ -1,4 +1,4 @@
-package com.badalov.springsecurity.config;
+package com.badalov.springsecurity.security;
 
 import com.badalov.springsecurity.exception.JwtAuthenticationException;
 import jakarta.servlet.*;
@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;

@@ -1,6 +1,6 @@
 package com.badalov.springsecurity.service.Impl;
 
-import com.badalov.springsecurity.config.JwtTokenProvider;
+import com.badalov.springsecurity.security.JwtTokenProvider;
 import com.badalov.springsecurity.payload.MessageResponse;
 import com.badalov.springsecurity.dto.UserDto;
 import com.badalov.springsecurity.model.User;

@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.List;
-
 @Entity
 @Table(name = "USERS_PHOTO")
 public class UserPhoto {
@@ -14,7 +12,7 @@ public class UserPhoto {
     private Long id;
     private String imageSource;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.ALL})
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User userId;

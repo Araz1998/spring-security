@@ -1,5 +1,7 @@
 package com.badalov.springsecurity.config;
 
+import com.badalov.springsecurity.security.JwtConfigure;
+import com.badalov.springsecurity.security.JwtTokenFilter;
 import com.badalov.springsecurity.service.Impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +40,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/uploadFile").permitAll()
+                .requestMatchers("/updateFile").permitAll()
                 .requestMatchers("/get").permitAll()
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/api/v1/auth/**").permitAll()

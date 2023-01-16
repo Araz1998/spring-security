@@ -1,4 +1,4 @@
-package com.badalov.springsecurity.config;
+package com.badalov.springsecurity.security;
 
 import com.badalov.springsecurity.exception.JwtAuthenticationException;
 import io.jsonwebtoken.*;
@@ -57,9 +57,12 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) throws JwtAuthenticationException {
         try {
-            Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).
-                    parseClaimsJws(token);
-            return !claimsJws.getBody().getExpiration().before(new Date());
+            Jws<Claims> claimsJws = Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .parseClaimsJws(token);
+            return !claimsJws.getBody()
+                    .getExpiration()
+                    .before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
             throw new JwtAuthenticationException("JWT token is expired or invalid", HttpStatus.UNAUTHORIZED);
         }
@@ -71,7 +74,11 @@ public class JwtTokenProvider {
     }
 
     public String getUsername(String token) {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+        return Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
     public String resolveToken(HttpServletRequest request) {
