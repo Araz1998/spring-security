@@ -4,10 +4,7 @@ import com.badalov.springsecurity.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
@@ -38,5 +35,11 @@ public class FileController {
         ResponseEntity<?> responseEntity = fileStorageService
                 .updateUserPhoto(file, principal.getName());
         return ResponseEntity.ok(responseEntity);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler
+    @ResponseBody
+    public String handleException(RuntimeException e) {
+        return "exception :" + e.toString();
     }
 }

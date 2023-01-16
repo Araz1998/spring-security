@@ -46,4 +46,10 @@ public class AuthController {
     public ResponseEntity<?> changeEmail(@RequestBody UserDto userDto) {
         return userService.changeUserEmail(userDto);
     }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler
+    @ResponseBody
+    public String handleException(RuntimeException e) {
+        return "exception :" + e.toString();
+    }
 }

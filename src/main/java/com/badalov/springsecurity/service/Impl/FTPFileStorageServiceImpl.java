@@ -9,6 +9,7 @@ import com.badalov.springsecurity.util.CustomFileUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -97,13 +98,11 @@ public class FTPFileStorageServiceImpl extends AbstractFileStorageService {
      * @return true if file was deleted, else false
      */
     private boolean deleteOldUserPhotoInDirectory(String userName) {
-        User user = userRepository.findByUsername(userName).get();
-
-        UserPhoto userPhoto = userPhotoRepository.findByUserId(user).get();
-
-        String imageSource = userPhoto.getImageSource();
-
-        return deleteFile(imageSource);
+        User foundUser = userRepository.findByUsername(userName)
+                .orElseThrow(() -> new UsernameNotFoundException(userName));
+        UserPhoto userPhoto = userPhotoRepository.findByUserId(foundUser)
+                .orElseThrow(() -> new FileStorageException("Not found photo"));
+        return deleteFile(userPhoto.getImageSource());
     }
 
     private boolean deleteFile(String imageSource) {

@@ -1,12 +1,10 @@
 package com.badalov.springsecurity.controller;
 
 import com.badalov.springsecurity.service.UserService;
-import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -28,4 +26,9 @@ public class UserController {
         return userService.getAllUser(pageSize, pageNum);
     }
 
+    @org.springframework.web.bind.annotation.ExceptionHandler
+    @ResponseBody
+    public String handleException(RuntimeException e) {
+        return "exception :" + e.toString();
+    }
 }
