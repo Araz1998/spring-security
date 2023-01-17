@@ -16,4 +16,6 @@ public interface UserPhotoRepository extends CrudRepository<UserPhoto, Long> {
     @Query("update UserPhoto up set up.imageSource = :imageSource where up.userId = :userId")
     int updateUserPhoto(@Param("userId") User userId,
                         @Param("imageSource") String imageSource);
+
+
 }

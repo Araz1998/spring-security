@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<?> loginUser(UserDto userDto) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword()));
         User user = userRepository.findByUsername(userDto.getUsername()).orElseThrow(() -> new UsernameNotFoundException("User not exist"));
-        String token = jwtTokenProvider.createToken(userDto.getUsername(), user.getRoles().stream().findFirst().map(Role::getName).toString());
+        String token = jwtTokenProvider.createToken(userDto.getUsername(), user.getId());
         Map<Object, Object> response = new HashMap<>();
         response.put("username", userDto.getUsername());
         response.put("accessToken", token);

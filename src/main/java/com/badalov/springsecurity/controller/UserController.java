@@ -1,5 +1,6 @@
 package com.badalov.springsecurity.controller;
 
+import com.badalov.springsecurity.annotation.CurrentUserId;
 import com.badalov.springsecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
